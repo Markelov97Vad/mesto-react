@@ -1,0 +1,31 @@
+.form__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 32px;
+  font-style: normal;
+  font-family: inherit;
+  border: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  background-color: transparent;
+  padding: 0;
+  margin: 29px 0 0;
+}
+
+.form__input:first-of-type {
+  margin: 0;
+}
+
+.form__input:focus {
+  outline: none;
+  border: 1px solid rgba(33, 53, 181, 0.2);
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 320px) {
+  .form__input {
+    margin-top: 28px;
+  }
+}
+
