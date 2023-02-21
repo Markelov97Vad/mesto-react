@@ -1,11 +1,12 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function NewCardPopup () {
+function NewCardPopup ({isOpen}) {
   return (
     <PopupWithForm
       name='new-card'
       title='Новое место'
+      isOpen={isOpen}
     >
       <fieldset className="form__input-container">
           <input className="form__input" type="text" name="name" id="title" placeholder="Название"

@@ -3,7 +3,7 @@ import React from "react";
 function PopupWithForm (props) {
   return (
     <>
-      <div className={`popup popup_theme_${props.name}`}>
+      <div className={`popup popup_theme_${props.name} ${props.isOpen ? "popup_opened" : ""}`}>
         <div className="popup__container">
           <button type="button" className="popup__close-button"></button>
           <h3 className="popup__title">{props.title}</h3>

@@ -1,20 +1,8 @@
 import React from "react";
 import avatar from '../images/jak-iv.png';
 
-function Main () {
+function Main ({onEditProfile, onAddPlace, onEditAvatar}) {
   
-  function handleEditAvatarClick () {
-    document.querySelector('.popup_theme_avatar').classList.add('popup_opened');
-  }
-
-  function handleEditProfileClick () {    
-    document.querySelector('.popup_theme_edit').classList.add('popup_opened');
-  }
-
-   function handleAddPlaceClick ()  {
-    document.querySelector('.popup_theme_new-card').classList.add('popup_opened');
-  }
-
   return (
     <>
     <main className="content">
@@ -22,15 +10,15 @@ function Main () {
         <div className="profile__card">
           <div className="profile__avatar">
             <img className="profile__avatar-img" src={avatar} alt="аватарка"/>
-            <button className="profile__avatar-button" onClick={handleEditAvatarClick}></button>
+            <button className="profile__avatar-button" onClick={onEditAvatar}></button>
           </div>
           <div className="profile__info">
             <h1 className="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" className="profile__edit-button" aria-label="edit profile"  onClick={handleEditProfileClick}></button>
+            <button type="button" className="profile__edit-button" aria-label="edit profile"  onClick={onEditProfile}></button>
             <p className="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button className="profile__add-button" aria-label="edit card" onClick={handleAddPlaceClick}></button>
+        <button className="profile__add-button" aria-label="edit card" onClick={onAddPlace}></button>
       </section>
 
       <section className="elements content__elements">

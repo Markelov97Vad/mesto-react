@@ -6,22 +6,38 @@ import { useState } from 'react';
 import EditProfilePopup from './EditProfilePopup';
 import NewCardPopup from './NewCardPopup';
 import CreateAvatarPopup from './CreateAvatarPopup';
+import ImagePopup from './ImagePopup';
 
 function App() {
-  const [isEditProfilePopupOpen , setIsEditProfilePopupOpen] = useState();
+  const [isEditProfilePopupOpen , setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
+  }
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+  }
 
   return (
     <div className='root'>
       < Header />
       < Main 
-        // onEditProfile={handleEditProfileClick}
-        // onAddPlace={handleAddPlaceClick}
-        // onEditAvatar={handleEditAvatarClick}
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
       />
       < Footer />
-      < EditProfilePopup />
-      < NewCardPopup />
-      < CreateAvatarPopup />
+      < EditProfilePopup isOpen={isEditProfilePopupOpen}/>
+      < NewCardPopup isOpen={isAddPlacePopupOpen}/>
+      < CreateAvatarPopup isOpen={isEditAvatarPopupOpen}/>
+      < ImagePopup />
     </div>
   );
 }
