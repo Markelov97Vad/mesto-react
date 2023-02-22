@@ -35,10 +35,6 @@ npm install
 npm start
 ```
 
-## Деплой проекта на Github Pages
-```
-npm run deploy
-```
 
 ## Learn More
 
