@@ -1,12 +1,13 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function CreateAvatarPopup ({isOpen}) {
+function CreateAvatarPopup ({isOpen, onClose}) {
   return (
     <PopupWithForm
       name='avatar'
       title='Обновить аватар'
       isOpen={isOpen}
+      onClose={onClose}
     >
       <fieldset className="form__input-container">
           <input className="form__input" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required/>

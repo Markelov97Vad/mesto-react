@@ -1,12 +1,13 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditProfilePopup ({isOpen}) {
+function EditProfilePopup ({isOpen, onClose}) {
   return (
     <PopupWithForm 
       name='edit'
       title='Редактировать профиль'
       isOpen={isOpen}
+      onClose={onClose}
 
       >
         <fieldset className="form__input-container">

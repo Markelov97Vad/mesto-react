@@ -25,6 +25,12 @@ function App() {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   }
 
+  function closeAllPopups () {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
+
   return (
     <div className='root'>
       < Header />
@@ -34,9 +40,9 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
       />
       < Footer />
-      < EditProfilePopup isOpen={isEditProfilePopupOpen}/>
-      < NewCardPopup isOpen={isAddPlacePopupOpen}/>
-      < CreateAvatarPopup isOpen={isEditAvatarPopupOpen}/>
+      < EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
+      < NewCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
+      < CreateAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
       < ImagePopup />
     </div>
   );
