@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import avatar from '../images/jak-iv.png';
 import api from "../utils/Api";
+import Card from "./Card";
 
-function Main ({onEditProfile, onAddPlace, onEditAvatar}) {
+function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick}) {
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.all([api.getProfile()]).then(([usetInfo]) => {
+    Promise.all([api.getProfile(), api.getCards()])
+    .then(([usetInfo, dataCards]) => {
       setUserName(usetInfo.name);
       setUserDescription(usetInfo.about);
-      setUserAvatar(usetInfo.avatar)
-    }).catch( err => console.log(err))
-  })
+      setUserAvatar(usetInfo.avatar);
+      setCards(dataCards);
+    })
+    .catch( err => console.log(err))
+  },[])
 
   return (
     <>
@@ -34,6 +38,13 @@ function Main ({onEditProfile, onAddPlace, onEditAvatar}) {
         </section>
 
         <section className="elements content__elements">
+          {cards.map((card, id) => (
+            < Card
+              key={id}
+              card={card}
+              onCardClick={onCardClick}
+            />
+          ))}
         </section>
       </main>
     </>
