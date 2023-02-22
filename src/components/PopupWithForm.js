@@ -9,7 +9,6 @@ function PopupWithForm (props) {
           <h3 className="popup__title">{props.title}</h3>
           <form className="form popup__form" name={`${props.name}`}>
             {props.children}
-            {console.log(props.children)}
           </form>
         </div>
       </div>
