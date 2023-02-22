@@ -40,9 +40,6 @@ npm start
 npm run deploy
 ```
 
-* [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-* [Демо проекта на Github Pages](https://verachernushina.github.io/mesto-react/)
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
