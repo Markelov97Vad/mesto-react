@@ -8,12 +8,12 @@ function CreateAvatarPopup ({isOpen, onClose}) {
       title='Обновить аватар'
       isOpen={isOpen}
       onClose={onClose}
+      buttonText='Сохранить'
     >
-      <fieldset className="form__input-container">
+      <>
           <input className="form__input" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required/>
           <span id="avatar-error" className="form__input-error"></span>
-          <button type='submit' className='form__submit-button'>Сохранить</button>
-        </fieldset>
+      </>
     </PopupWithForm>
   ) 
 }
