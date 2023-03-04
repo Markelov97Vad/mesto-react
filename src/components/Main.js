@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
-import api from "../utils/Api";
+import React, { useContext } from "react";
+
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick}) {
+function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, onCardLike}) {
   // const [userName, setUserName] = useState('');
   // const [userDescription, setUserDescription] = useState('');
   // const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([]);
+  // const [cards, setCards] = useState([]);
   const currentUser = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    Promise.resolve( api.getCards())
-    .then(( dataCards ) => {
-      setCards(dataCards);
-    })
-    .catch( err => console.log(err))
-  },[])
+  // useEffect(() => {
+  //   Promise.resolve( api.getCards())
+  //   .then(( dataCards ) => {
+  //     setCards(dataCards);
+  //   })
+  //   .catch( err => console.log(err))
+  // },[])
 
   return (
     <>
@@ -37,13 +37,15 @@ function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick}) {
         </section>
 
         <section className="elements content__elements">
-          {cards.map((card) => (
-            < Card
-              key={card._id}
-              card={card}
-              onCardClick={onCardClick}
-            />
-          ))}
+          {cards.map((card) => {
+            return (
+              < Card
+                key={card._id}
+                card={card}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+              />
+          )})}
         </section>
       </main>
     </>

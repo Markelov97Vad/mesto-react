@@ -16,11 +16,13 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState('');
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.resolve(api.getProfile())
-      .then( userInfo => {
+    Promise.all([api.getProfile(), api.getCards()])
+      .then(( [userInfo, dataCards] )=> {
         setCurrentUser(userInfo);
+        setCards(dataCards);
       })
       .catch( err => console.log(err))
   }, [])
@@ -49,6 +51,18 @@ function App() {
     setSelectedCard(card);
   }
 
+  function handleCardLike (card) {
+    const isLiked = card.likes.some( elId => elId._id === currentUser._id);
+    
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then( newCard => {
+        setCards( state => state.map( c => c._id === card._id ? newCard : c));
+      })
+      .catch( err => console.log(err))
+    
+    console.log("нажал")
+   }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='root'>
@@ -58,6 +72,8 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={handleCardClick}
+          cards={cards}
+          onCardLike={handleCardLike}
         />
         < Footer />
         < EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
