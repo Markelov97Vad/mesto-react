@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, onCardLike}) {
+function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, onCardLike, onCardDelete}) {
   // const [userName, setUserName] = useState('');
   // const [userDescription, setUserDescription] = useState('');
   // const [userAvatar, setUserAvatar] = useState('');
@@ -44,6 +44,7 @@ function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, on
                 card={card}
                 onCardClick={onCardClick}
                 onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
               />
           )})}
         </section>

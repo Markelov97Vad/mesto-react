@@ -52,15 +52,39 @@ function App() {
   }
 
   function handleCardLike (card) {
-    const isLiked = card.likes.some( elId => elId._id === currentUser._id);
+    const isLiked = card.likes.some( el => el._id === currentUser._id);
     
     api.changeLikeCardStatus(card._id, !isLiked)
+    //      
       .then( newCard => {
-        setCards( state => state.map( c => c._id === card._id ? newCard : c));
+        setCards( state => {
+    
+          //         список всех карточек
+          console.log(state)
+          return state.map( c =>{ 
+            //        список карточек
+            console.log(c)
+            //        та карточка, которую лайкнули
+            console.log(newCard)
+            return c._id === card._id ? newCard : c
+          })
+        });
       })
       .catch( err => console.log(err))
     
     console.log("нажал")
+   }
+
+   function handleCardDelete (id) {
+     api.deleteCard(id)
+       .then(() => {
+        //       добавляет в стейт массив карточек без той, которую удалил
+        setCards( cards => cards.filter( card => {
+          return card._id !== id, console.log(card._id !== id), console.log(card);
+        }))
+        console.log(cards);
+       })
+       .catch( err => console.log(err))
    }
 
   return (
@@ -74,6 +98,7 @@ function App() {
           onCardClick={handleCardClick}
           cards={cards}
           onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
         < Footer />
         < EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
