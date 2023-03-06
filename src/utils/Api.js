@@ -81,7 +81,7 @@ class Api {
     .then( res => this._getPromise(res))
   }
 
-  addAvatar (data) {
+  setUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,

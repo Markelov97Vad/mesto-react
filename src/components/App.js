@@ -87,10 +87,16 @@ function App() {
       .catch( err => console.log(err))
    }
 
-  function  handleUpdateUser (data) {
-    api.setUserInfo(data)
+  function  handleUpdateUser (userData) {
+    api.setUserInfo(userData)
       .then((data) => {
-        console.log(data)
+        setCurrentUser(data);
+      })
+  }
+
+  function handleUpdateAvatar (userData) {
+    api.setUserAvatar(userData)
+      .then((data) => {
         setCurrentUser(data);
       })
   }
@@ -111,7 +117,7 @@ function App() {
         < Footer />
         < EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
         < NewCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
-        < CreateAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
+        < CreateAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
         < ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </CurrentUserContext.Provider>
