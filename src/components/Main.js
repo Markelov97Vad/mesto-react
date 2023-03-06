@@ -1,22 +1,10 @@
 import React, { useContext } from "react";
-
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, onCardLike, onCardDelete}) {
-  // const [userName, setUserName] = useState('');
-  // const [userDescription, setUserDescription] = useState('');
-  // const [userAvatar, setUserAvatar] = useState('');
-  // const [cards, setCards] = useState([]);
-  const currentUser = useContext(CurrentUserContext);
 
-  // useEffect(() => {
-  //   Promise.resolve( api.getCards())
-  //   .then(( dataCards ) => {
-  //     setCards(dataCards);
-  //   })
-  //   .catch( err => console.log(err))
-  // },[])
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <>

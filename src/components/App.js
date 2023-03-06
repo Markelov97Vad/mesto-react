@@ -3,7 +3,7 @@ import Main from './Main';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import EditProfilePopup from './EditProfilePopup';
-import NewCardPopup from './NewCardPopup';
+import AddPlacePopup from './AddPlacePopup';
 import CreateAvatarPopup from './CreateAvatarPopup';
 import ImagePopup from './ImagePopup';
 import api from '../utils/Api';
@@ -58,21 +58,12 @@ function App() {
     //      
       .then( newCard => {
         setCards( state => {
-    
-          //         список всех карточек
-          console.log(state)
-          return state.map( c =>{ 
-            //        список карточек
-            console.log(c)
-            //        та карточка, которую лайкнули
-            console.log(newCard)
+          return state.map( c => { 
             return c._id === card._id ? newCard : c
           })
         });
       })
       .catch( err => console.log(err))
-    
-    console.log("нажал")
    }
 
   function handleCardDelete (id) {
@@ -80,9 +71,8 @@ function App() {
       .then(() => {
       //       добавляет в стейт массив карточек без той, которую удалил
       setCards( cards => cards.filter( card => {
-        return card._id !== id, console.log(card._id !== id), console.log(card);
+        return card._id !== id
       }))
-      console.log(cards);
       })
       .catch( err => console.log(err))
    }
@@ -101,6 +91,14 @@ function App() {
       })
   }
 
+  function handleAddPlaceSubmit (dataCards) {
+      api.addCard(dataCards)
+        .then((newCard) => {
+          setCards([newCard, ...cards]);
+
+        })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='root'>
@@ -116,7 +114,7 @@ function App() {
         />
         < Footer />
         < EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
-        < NewCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
+        < AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
         < CreateAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
         < ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>

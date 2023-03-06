@@ -14,8 +14,6 @@ function CreateAvatarPopup ({isOpen, onClose, onUpdateAvatar}) {
 
   }
 
-
-
   return (
     <PopupWithForm
       name='avatar'
