@@ -19,7 +19,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.all([api.getProfile(), api.getCards()])
+    Promise.all([api.getUserInfo(), api.getCards()])
       .then(( [userInfo, dataCards] )=> {
         setCurrentUser(userInfo);
         setCards(dataCards);
@@ -75,17 +75,25 @@ function App() {
     console.log("нажал")
    }
 
-   function handleCardDelete (id) {
-     api.deleteCard(id)
-       .then(() => {
-        //       добавляет в стейт массив карточек без той, которую удалил
-        setCards( cards => cards.filter( card => {
-          return card._id !== id, console.log(card._id !== id), console.log(card);
-        }))
-        console.log(cards);
-       })
-       .catch( err => console.log(err))
+  function handleCardDelete (id) {
+    api.deleteCard(id)
+      .then(() => {
+      //       добавляет в стейт массив карточек без той, которую удалил
+      setCards( cards => cards.filter( card => {
+        return card._id !== id, console.log(card._id !== id), console.log(card);
+      }))
+      console.log(cards);
+      })
+      .catch( err => console.log(err))
    }
+
+  function  handleUpdateUser (data) {
+    api.setUserInfo(data)
+      .then((data) => {
+        console.log(data)
+        setCurrentUser(data);
+      })
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -101,7 +109,7 @@ function App() {
           onCardDelete={handleCardDelete}
         />
         < Footer />
-        < EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
+        < EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
         < NewCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
         < CreateAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
         < ImagePopup card={selectedCard} onClose={closeAllPopups}/>

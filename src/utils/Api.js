@@ -18,20 +18,20 @@ class Api {
       .then(res =>  this._getPromise(res))
   }
 
-  getProfile () {
+  getUserInfo () {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
     })
     .then( res =>  this._getPromise(res))
   }
 
-  addProfile (data) {
+  setUserInfo(data) {
       return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          name: data.username,
-          about: data.info
+          name: data.name,
+          about: data.about
         })
       })
       .then( res =>  this._getPromise(res))
