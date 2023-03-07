@@ -16,8 +16,6 @@ function EditProfilePopup ({onUpdateUser, isOpen, onClose, onLoading}) {
   }
 
   function handleSubmit (event) {
-    console.log(name);
-    console.log(description);
     event.preventDefault();
     onUpdateUser({
       name,
@@ -27,9 +25,8 @@ function EditProfilePopup ({onUpdateUser, isOpen, onClose, onLoading}) {
 
   useEffect(() => {
     setName(currentUser.name);
-    console.log(currentUser.name);
     setDescription(currentUser.about)
-  }, [currentUser])
+  }, [currentUser, isOpen])
 
   return (
     <PopupWithForm 
@@ -42,10 +39,10 @@ function EditProfilePopup ({onUpdateUser, isOpen, onClose, onLoading}) {
       onLoading={onLoading}
       >
         <>
-          <input className="form__input" type="text" name="username" value={name} onChange={handleChangeName} id="name" placeholder="Имя"
+          <input className="form__input" type="text" name="username" value={name || ''} onChange={handleChangeName} id="name" placeholder="Имя"
             minLength="2" maxLength="40" required/>
           <span id="name-error" className="form__input-error">Вы пропустили это поле</span>
-          <input className="form__input" type="text" name="info" value={description} onChange={handleChangeAbout} id="job" placeholder="Вид деятельности"
+          <input className="form__input" type="text" name="info" value={description || ''} onChange={handleChangeAbout} id="job" placeholder="Вид деятельности"
             minLength="2" maxLength="200" required/>
           <span id="job-error" className="form__input-error">Вы пропустили это поле</span>
         </>
