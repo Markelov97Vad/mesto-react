@@ -25,8 +25,7 @@ function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, on
         </section>
 
         <section className="elements content__elements">
-          {cards.map((card) => {
-            return (
+          {cards.map((card) => (
               < Card
                 key={card._id}
                 card={card}
@@ -34,7 +33,7 @@ function Main ({onEditProfile, onAddPlace, onEditAvatar , onCardClick, cards, on
                 onCardLike={onCardLike}
                 onCardDelete={onCardDelete}
               />
-          )})}
+          ))}
         </section>
       </main>
     </>

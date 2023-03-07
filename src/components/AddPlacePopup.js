@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup ({isOpen, onClose, onAddPlace}) {
+function AddPlacePopup ({isOpen, onClose, onAddPlace, onLoading}) {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
 
   function handleChangeName(e) {
     setName(e.target.value);
-
   }
 
   function handleChangeLink(e) {
@@ -24,11 +23,6 @@ function AddPlacePopup ({isOpen, onClose, onAddPlace}) {
     setLink('');
   }
 
-  // function handleClear() {
-  //   setName('');
-  //   setLink('')
-  // }
-
   return (
     <PopupWithForm
       name='new-card'
@@ -37,6 +31,7 @@ function AddPlacePopup ({isOpen, onClose, onAddPlace}) {
       onClose={onClose}
       buttonText='Создать'
       onSubmit={handleSubmit}
+      onLoading={onLoading}
     >
       <>
           <input className="form__input" type="text" value={name} onChange={handleChangeName} name="name" id="title" placeholder="Название"

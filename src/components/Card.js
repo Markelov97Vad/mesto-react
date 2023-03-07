@@ -11,17 +11,14 @@ function Card ({card, onCardClick, onCardLike, onCardDelete}) {
 
   const handleClick = () => {
     onCardClick(card);
-    console.log(card)
   }
 
   const handleLike = () => {
     onCardLike(card)
-    console.log(card)
   }
 
   const handleDelete = () => {
     onCardDelete(card._id)
-    console.log(card._id);
   }
 
   return (
