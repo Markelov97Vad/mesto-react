@@ -60,16 +60,21 @@ function App() {
 
   function handleCardClick (card) {
     setSelectedCard(card);
+    console.log(card);
   }
 
   function handleCardLike (card) {
     const isLiked = card.likes.some( el => el._id === currentUser._id);
     
     api.changeLikeCardStatus(card._id, !isLiked)     
-      .then( newCard => {
+      .then( newCardWithLike => {
+        console.log(newCardWithLike)
         setCards( state => {
-          return state.map( c => { 
-            return c._id === card._id ? newCard : c
+          console.log(state)
+          return state.map( c => {
+            console.log(c);
+            console.log(newCardWithLike);
+            return c._id === card._id ? newCardWithLike : c
           })
         });
       })
